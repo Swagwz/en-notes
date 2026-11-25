@@ -1,0 +1,5 @@
+BETTER_AUTH_SECRET=replace-with-a-random-secret-at-least-32-characters
+BETTER_AUTH_URL=http://localhost:8787
+BOOTSTRAP_ADMIN_EMAIL=you@example.com
+BOOTSTRAP_SECRET=replace-with-a-different-random-secret
+WEBSTER_LEARNERS_API_KEY=replace-with-your-merriam-webster-learners-key

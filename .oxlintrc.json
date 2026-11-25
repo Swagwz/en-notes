@@ -1,0 +1,37 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": ["react", "typescript", "oxc", "jsx-a11y", "import"],
+  "ignorePatterns": ["**/dist/**", "**/node_modules/**", "**/.wrangler/**"],
+  "overrides": [
+    {
+      "files": ["apps/api/**/*.ts"],
+      "env": {
+        "node": true
+      }
+    },
+    {
+      "files": ["apps/web/src/**/*.{ts,tsx}"],
+      "env": {
+        "browser": true
+      }
+    },
+    {
+      "files": ["apps/web/**/*.config.ts"],
+      "env": {
+        "node": true
+      }
+    },
+    {
+      "files": ["packages/shared/**/*.ts"],
+      "env": {
+        "node": true,
+        "browser": true
+      }
+    }
+  ],
+  "rules": {
+    "react/rules-of-hooks": "error",
+    "react/only-export-components": ["warn", { "allowConstantExport": true }],
+    "prefer-const": "error"
+  }
+}
