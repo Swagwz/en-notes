@@ -1,0 +1,55 @@
+{
+  "version": "7",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "6",
+      "when": 1795640431066,
+      "tag": "0000_auth",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1795640442700,
+      "tag": "0001_vocabulary",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1795640449199,
+      "tag": "0002_dictionary",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "6",
+      "when": 1795640455453,
+      "tag": "0003_wordlists",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "6",
+      "when": 1795640658220,
+      "tag": "0004_auth_query_indexes",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "6",
+      "when": 1795738188604,
+      "tag": "0005_dictionary_normalized_json",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "6",
+      "when": 1795738419436,
+      "tag": "0006_dictionary_permanent_lookups",
+      "breakpoints": true
+    }
+  ]
+}

@@ -1,3 +1,4 @@
+# D1 binding/database ID is configured in wrangler.jsonc; this file is for local vars only.
 BETTER_AUTH_SECRET=replace-with-a-random-secret-at-least-32-characters
 BETTER_AUTH_URL=http://localhost:8787
 BOOTSTRAP_ADMIN_EMAIL=you@example.com

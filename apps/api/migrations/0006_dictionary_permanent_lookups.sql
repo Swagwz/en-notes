@@ -1,0 +1,1 @@
+ALTER TABLE `dictionary_lookups` DROP COLUMN `expires_at`;

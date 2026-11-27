@@ -1,0 +1,1 @@
+ALTER TABLE `dictionary_lookups` ADD `normalized_json` text;

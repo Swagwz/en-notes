@@ -14,7 +14,7 @@ EN Notes 是個人英文單字學習網站，優先服務屋內／家庭的少�
 - `sections`：source 底下可選的分段，可對應章、文章段落或影片片段。避免稱為 `sessions`，因該名稱也用於登入 session。
 - `vocabulary_items`：個人收集的單字或片語；不是 dictionary 的標準字典條目。
 - `wordlists`：預先提供的獨立詞表，不隸屬於個人 source；每位使用者另有自己的進度。
-- `dictionary_entries`：Dictionary provider 回傳項目的正規化資料；lookup 的完整回應另行快取。
+- `dictionary_entries`：Dictionary provider 回傳項目的淺層索引；`dictionary_lookups` 永久保存原始 response 與 adapter 產生的 normalized JSON。這些 provider lookup 與使用者的 `vocabulary_items` 是不同資料。
 
 source、section 都可缺省於單字項目；兩者都為 null 表示放在個人 root。若有 section，API 會從 section 對應到 source。
 
@@ -23,9 +23,9 @@ source、section 都可缺省於單字項目；兩者都為 null 表示放在個
 - API 使用 Hono，部署目標為 Cloudflare Workers，資料庫使用 D1。
 - API 使用版本路徑 `/api/v1`，採用 REST resource 路徑，不在一般資源 URL 放動詞。
 - 使用 Better Auth 的 email/password；關閉公開註冊，由管理者開通帳號，以一次性 bootstrap 建立初始管理者。目前沒有寄送邀請郵件的流程。
-- 字典 provider 選 Merriam-Webster Learner's Dictionary。API key 尚需使用者自行設定。
+- 字典 provider 選 Merriam-Webster Learner's Dictionary。本機 API key 由 `.dev.vars` 設定；Cloudflare Worker secret 是獨立設定，狀態未從 repo 驗證。
 - CEEC 高中英文參考詞彙表是單獨的 wordlist。原 PDF 標示 6,000 詞；目前資料表尚未匯入詞表內容。
 
 ## 尚未成為已實作功能
 
-Web UI 仍為 Vite/React starter；前端登入、單字管理與詞表卡片頁尚未完成。CEEC 詞表資料尚未 seed。production D1 資源、真實 `database_id`、Worker secrets 與自訂網域也尚未設定。
+Web UI 仍為 Vite/React starter；前端登入、單字管理與詞表卡片頁尚未完成。CEEC 詞表資料尚未 seed。`wrangler.jsonc` 已設定 D1 binding 與 database ID；Cloudflare 端連線、remote migrations、Worker secrets/vars 與自訂網域狀態未從 repo 驗證。

@@ -14,12 +14,15 @@
 | 執行開發、lint、typecheck、build、本機 D1  | [development.md](./development.md)                         |
 | 確認已完成項目與下一步                     | [roadmap.md](./roadmap.md)                                 |
 | 查詢外部 API、詞表與平台文件               | [references.md](./references.md)                           |
+| 理解 Merriam-Webster JSON 結構與內嵌標記   | [webster-json-format.md](./webster-json-format.md)         |
 
 ## 文件與程式碼的對應
 
-- 專案 API、路由與手寫 OpenAPI 文件：[`apps/api/src/index.ts`](../apps/api/src/index.ts)。
+- API routes/controllers/adapters/models：[`apps/api/src/routes/v1/`](../apps/api/src/routes/v1/)、[`apps/api/src/controllers/`](../apps/api/src/controllers/)、[`apps/api/src/adapters/`](../apps/api/src/adapters/)、[`apps/api/src/models/`](../apps/api/src/models/)。
+- Domain-based Drizzle schema：[`apps/api/src/db/schema/`](../apps/api/src/db/schema/)。
+- OpenAPI 文件：[`apps/api/src/openapi/document.ts`](../apps/api/src/openapi/document.ts)。
 - Better Auth 設定與 Worker bindings 型別：[`apps/api/src/auth.ts`](../apps/api/src/auth.ts)、[`apps/api/src/env.ts`](../apps/api/src/env.ts)。
-- D1 schema 歷史：[`apps/api/migrations/`](../apps/api/migrations/)；新增變更應新增 migration，不要改寫已套用的 migration。
+- D1 schema 按 domain 分組，Drizzle Kit 產生 SQL migrations：[`apps/api/src/db/schema/`](../apps/api/src/db/schema/)、[`apps/api/migrations/`](../apps/api/migrations/)；正式套用後不要改寫已套用的 migration。
 - Worker/D1 設定與本機開發腳本：[`apps/api/wrangler.jsonc`](../apps/api/wrangler.jsonc)、[`apps/api/scripts/wrangler.mjs`](../apps/api/scripts/wrangler.mjs)。
 - Web 目前仍是 Vite 範例頁：[`apps/web/src/App.tsx`](../apps/web/src/App.tsx)。
 - 共用 package 目前尚無實際 exports：[`packages/shared/src/index.ts`](../packages/shared/src/index.ts)。

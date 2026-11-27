@@ -7,17 +7,18 @@
 - 管理者用 `POST /api/v1/users` 建立其他帳號。這不是公開註冊。
 - 需登入的 Hono API 先讀 Better Auth session，並以 `user_id` 限制 source、section 與 vocabulary 查詢。
 - Better Auth rate limiter 已啟用，設定為 100 requests/10 秒；IP 取自 Cloudflare 設定的 `cf-connecting-ip` header。
-- Dictionary key 僅由 Worker environment 讀取；缺少時 lookup 回 503，不以成功型空回應掩蓋設定錯誤。
+- Dictionary key 僅由 Worker environment 讀取；D1 已有該詞紀錄時不需 key，只有 cache miss 且 key 缺少時 lookup 回 503。
+- Swagger UI 與 OpenAPI JSON 預設隱藏；僅本機 dev script 設定 `API_DOCS_ENABLED=true` 時提供。這只減少 API schema 的公開面，資料 API 仍各自要求 session。
 
 ## 部署前必要設定
 
-1. 建立 Cloudflare D1，將 [`apps/api/wrangler.jsonc`](../apps/api/wrangler.jsonc) 中的 placeholder `database_id` 換成真實 ID。
+1. 確認 [`apps/api/wrangler.jsonc`](../apps/api/wrangler.jsonc) 中已設定的 D1 binding、名稱與 database ID 指向預期的 Cloudflare 資料庫。
 2. 以 Worker secrets 設定 `BETTER_AUTH_SECRET`、`BOOTSTRAP_SECRET`，以及有使用字典時的 `WEBSTER_LEARNERS_API_KEY`。
 3. 設定 Worker vars `BETTER_AUTH_URL` 與 `BOOTSTRAP_ADMIN_EMAIL`。
 4. 套用 remote migrations、執行一次 bootstrap 建立管理者，完成後移除 `BOOTSTRAP_SECRET`。
 5. 確認正式域名、session cookie、可信來源與前端跨來源需求。
 
-production D1、正式 secrets、WAF／Cloudflare edge rate-limit 規則目前都尚未配置或驗證；不要假設程式內 Better Auth rate limit 已取代 edge 層防護。Cloudflare Workers/WAF 上可依實際流量為登入、bootstrap 與其他昂貴路由另設規則。
+Wrangler 已設定 D1 binding 和 database ID；repo 本身無法確認該 ID 在 Cloudflare 帳號中的狀態、remote migrations 或 Dashboard 上的 Worker secrets/vars。WAF／Cloudflare edge rate-limit 規則也未從 repo 驗證。不要假設程式內 Better Auth rate limit 已取代 edge 層防護；可依實際流量為登入、bootstrap 與其他昂貴路由另設規則。
 
 ## 尚待補上的防護與驗證
 

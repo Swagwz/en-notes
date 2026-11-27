@@ -4,24 +4,29 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "node scripts/wrangler.mjs d1 migrations apply en-notes --local && node scripts/wrangler.mjs dev --port 8787",
+    "dev": "node scripts/wrangler.mjs d1 migrations apply en_notes_binding --local && node scripts/wrangler.mjs dev --port 8787 --var API_DOCS_ENABLED:true",
     "build": "node scripts/wrangler.mjs deploy --dry-run",
     "deploy": "node scripts/wrangler.mjs deploy",
-    "db:migrate:local": "node scripts/wrangler.mjs d1 migrations apply en-notes --local",
-    "db:migrate:remote": "node scripts/wrangler.mjs d1 migrations apply en-notes --remote",
+    "db:generate": "drizzle-kit generate",
+    "db:check": "drizzle-kit check",
+    "db:migrate:local": "node scripts/wrangler.mjs d1 migrations apply en_notes_binding --local",
+    "db:migrate:remote": "node scripts/wrangler.mjs d1 migrations apply en_notes_binding --remote",
     "lint": "oxlint",
+    "test": "node --test",
     "typecheck": "tsc -p tsconfig.json"
   },
   "dependencies": {
     "@en-notes/shared": "workspace:*",
     "@hono/swagger-ui": "^0.6.2",
     "better-auth": "^1.7.27",
+    "drizzle-orm": "^0.45.4",
     "hono": "^4.13.19",
     "zod": "^4.2.1"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^5.20261121.1",
     "@types/node": "^24.19.2",
+    "drizzle-kit": "^0.31.11",
     "wrangler": "^4.166.0"
   }
 }

@@ -7,8 +7,8 @@
   "d1_databases": [
     {
       "binding": "DB",
-      "database_name": "en-notes",
-      "database_id": "00000000-0000-0000-0000-000000000000",
+      "database_name": "en_notes_binding",
+      "database_id": "3e5e9b70-8940-4813-956e-3170dab0ec98",
       "migrations_dir": "migrations",
     },
   ],
